@@ -1,4 +1,4 @@
-(defproject clj-props "0.1.0-SNAPSHOT"
+(defproject cassc/clj-props "0.1.0-SNAPSHOT"
   :description "Clojure library for loading edn configuration file"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
