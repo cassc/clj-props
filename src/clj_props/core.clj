@@ -1,7 +1,7 @@
 (ns clj-props.core
   (:require [clojure.edn :as edn]))
 
-(defn- props-not-found-error
+(defn props-not-found-error
   [f k]
   (throw (RuntimeException. (str "Property " k " not found in " f))))
 

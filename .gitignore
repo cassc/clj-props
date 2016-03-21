@@ -1,4 +1,5 @@
 /doc
+pom.xml
 *.iml
 /.idea
 /target
