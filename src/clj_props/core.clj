@@ -3,7 +3,8 @@
 
 (defn props-not-found-error
   [f k]
-  (throw (RuntimeException. (str "Property " k " not found in " f))))
+  (throw (RuntimeException. (str "Property " k " not found in " f)))
+  nil)
 
 (defn reload-if-required
   [store {:keys [refresh]}]
@@ -30,7 +31,10 @@
        ([key-or-keys# options#]
         (reload-if-required props-store# options#)
         (let [props# (:props @props-store#)
-              val# (get-in props# (if (sequential? key-or-keys#) key-or-keys# [key-or-keys#]) ::none)]
+              val# (get-in props# (if (sequential? key-or-keys#) key-or-keys# [key-or-keys#]) ::none)
+              dval# (:default options# ::none)]
           (if (= val# ::none)
-            (or (:default options#) (props-not-found-error (:resource @props-store#) key-or-keys#))
+            (if (= dval# ::none)
+              (props-not-found-error (:resource @props-store#) key-or-keys#)
+              dval#)
             val#))))))
